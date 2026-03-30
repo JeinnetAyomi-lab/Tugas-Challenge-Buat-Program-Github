@@ -3,110 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laporan OOP Dart - Jeinnet</title>
+    <title>Laporan Materi OOP Dart - Jeinnet</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; color: #1c1e21; margin: 0; padding: 20px; }
-        .container { max-width: 850px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
-        h1 { color: #0175c2; text-align: center; border-bottom: 3px solid #0175c2; padding-bottom: 10px; }
-        h2 { color: #1a73e8; margin-top: 30px; display: flex; align-items: center; }
-        h2::before { content: "📘"; margin-right: 10px; }
-        .info-card { background: #e8f0fe; border-radius: 10px; padding: 20px; margin-bottom: 25px; border-left: 6px solid #1a73e8; }
-        pre { background: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 10px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
-        .quiz-section { background: #fff4e5; border: 1px solid #ffe5b4; padding: 25px; border-radius: 10px; margin-top: 40px; }
-        .quiz-item { margin-bottom: 15px; font-weight: bold; color: #c2410c; }
-        .answer { margin-bottom: 20px; padding-left: 15px; border-left: 3px solid #fdba74; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background-color: #f0f4f8; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .header-box { background: linear-gradient(135deg, #0175c2, #13b9fd); color: white; padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 30px; }
         
-        /* Tombol & Modal */
-        .btn-interactive { background: #0175c2; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; display: block; margin: 30px auto; transition: 0.3s; }
-        .btn-interactive:hover { background: #015a96; transform: scale(1.05); }
-        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); }
-        .modal-content { background: white; margin: 3% auto; padding: 20px; width: 90%; height: 85%; border-radius: 15px; position: relative; }
-        .close { position: absolute; right: 25px; top: 15px; font-size: 35px; cursor: pointer; color: #d93025; }
-        iframe { width: 100%; height: 90%; border: none; border-radius: 10px; }
+        .slide-card { border: 1px solid #e1e8ed; border-radius: 12px; padding: 20px; margin-bottom: 25px; transition: 0.3s; }
+        .slide-card:hover { box-shadow: 0 5px 15px rgba(0,0,0,0.05); border-color: #0175c2; }
+        .slide-num { background: #0175c2; color: white; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        
+        h2 { color: #0175c2; margin-top: 10px; }
+        code { background: #f1f3f4; color: #c2185b; padding: 2px 6px; border-radius: 4px; }
+        pre { background: #263238; color: #eceff1; padding: 15px; border-radius: 8px; overflow-x: auto; font-size: 14px; border-left: 5px solid #00bcd4; }
+        
+        .btn-interaktif { background: #0175c2; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; display: block; margin: 20px auto; width: fit-content; text-decoration: none; }
+        .btn-interaktif:hover { background: #015a96; transform: translateY(-2px); }
+
+        .quiz-container { background: #fff9c4; padding: 25px; border-radius: 12px; border: 1px solid #fbc02d; margin-top: 50px; }
+        
+        /* Modal Style */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 2% auto; padding: 20px; width: 90%; height: 85%; border-radius: 15px; position: relative; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #f44336; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Laporan Sesi 1: Dasar OOP di Dart</h1>
-
-    <div class="info-card">
-        <strong>Nama:</strong> Jeinnet Verara Ayomi <br>
-        <strong>Program Studi:</strong> Sistem Informasi <br>
-        <strong>Topik:</strong> Introduction to Object-Oriented Programming
+    <div class="header-box">
+        <h1 style="margin:0">Laporan Praktikum Sistem Informasi</h1>
+        <p style="margin:10px 0 0">Sesi 1: Pengantar OOP dan Dasar Kelas di Dart</p>
+        <hr style="opacity: 0.3">
+        <p><strong>Nama:</strong> Jeinnet Verara Ayomi</p>
     </div>
 
-    <h2>Ringkasan Materi</h2>
-    <p>OOP adalah metode pemrograman yang berorientasi pada objek. Bayangkan <strong>Kelas (Class)</strong> sebagai cetakan kue, dan <strong>Objek (Object)</strong> sebagai kue yang sudah matang. Kelas menentukan bentuk dan rasa, sedangkan objek adalah hasil nyata yang bisa kita makan.</p>
-    
-    <ul>
-        <li><strong>Attribute:</strong> Data di dalam kelas (contoh: <code>nama</code>, <code>nim</code>).</li>
-        <li><strong>Method:</strong> Fungsi atau aksi (contoh: <code>tampilkanData()</code>).</li>
-        <li><strong>Constructor:</strong> Cara instan untuk mengisi data saat objek pertama kali dibuat.</li>
-    </ul>
+    <div class="slide-card">
+        <span class="slide-num">Slide 1 - 3</span>
+        <h2>Pendahuluan & Konsep Dasar</h2>
+        <p>OOP fokus pada <strong>Objek</strong> sebagai unit utama. Objek memiliki:</p>
+        <ul>
+            <li><strong>State:</strong> Data/Atribut (contoh: warna, model).</li>
+            <li><strong>Behavior:</strong> Perilaku/Metode (contoh: berjalan, berhenti).</li>
+        </ul>
+        <p><em>Perbedaan:</em> <b>Imperatif</b> fokus pada langkah-langkah, sedangkan <b>OOP</b> fokus pada interaksi antar objek.</p>
+    </div>
 
-    <h2>Contoh Implementasi Kode</h2>
-    <p>Berikut adalah kode Dart yang menerapkan konsep Class, Constructor, dan Method untuk data Mahasiswa:</p>
-    <pre>
-class Mahasiswa {
-  String nama;
-  String nim;
-  double ipk;
+    <div class="slide-card">
+        <span class="slide-num">Slide 5 - 7</span>
+        <h2>Sintaks Dasar Kelas & Objek</h2>
+        <p>Membuat cetakan (Class) dan mewujudkannya menjadi instance (Object).</p>
+        <pre>
+class Car {
+  String? model;
+  String? color;
 
-  // Constructor menggunakan 'this' agar lebih ringkas
-  Mahasiswa(this.nama, this.nim, this.ipk);
-
-  void tampilkanData() {
-    print('--- Data Mahasiswa ---');
-    print('Nama : $nama');
-    print('NIM  : $nim');
-    print('IPK  : $ipk');
-  }
+  void start() => print('Car $model started!');
 }
 
 void main() {
-  var mhs1 = Mahasiswa("Jeinnet", "2026001", 3.95);
-  mhs1.tampilkanData();
+  var myCar = Car(); 
+  myCar.model = 'Sedan';
+  myCar.start();
 }</pre>
+    </div>
 
-    <button class="btn-interactive" onclick="openModal()">🚀 Coba Code Secara Interaktif</button>
+    <div class="slide-card">
+        <span class="slide-num">Slide 8 - 11</span>
+        <h2>Constructor & 'this' Keyword</h2>
+        <p>Constructor digunakan untuk inisialisasi properti secara otomatis. Keyword <code>this</code> merujuk pada atribut di dalam kelas itu sendiri.</p>
+        <pre>
+class Mahasiswa {
+  String nama;
+  String nim;
 
-    <div class="quiz-section">
-        <h2 style="color: #c2410c; border-left-color: #c2410c;">Hasil Quiz (Slide 14)</h2>
-        
-        <div class="quiz-item">1. Apa perbedaan utama antara kelas dan objek?</div>
-        <div class="answer">Kelas adalah cetakan/rancangan (blueprint), sedangkan objek adalah hasil nyata (instance) dari cetakan tersebut yang sudah memiliki nilai data.</div>
+  // Parameterized Constructor
+  Mahasiswa(this.nama, this.nim);
 
-        <div class="quiz-item">2. Sebutkan 3 keuntungan menggunakan OOP.</div>
-        <div class="answer">
-            a. <b>Reusable:</b> Kode bisa digunakan berulang kali.<br>
-            b. <b>Organized:</b> Kode lebih rapi karena terbagi per bagian (modul).<br>
-            c. <b>Maintainable:</b> Lebih mudah diperbaiki jika terjadi error tanpa merusak bagian lain.
-        </div>
+  void tampil() => print('Nama: $nama, NIM: $nim');
+}
 
-        <div class="quiz-item">3. Buat kelas Hewan dengan atribut nama dan metode bersuara().</div>
-        <pre style="background: #fff; color: #333; border: 1px solid #ddd;">
+void main() {
+  var mhs = Mahasiswa('Jeinnet', '2026001');
+  mhs.tampil();
+}</pre>
+    </div>
+
+    <button class="btn-interaktif" onclick="openModal()">📂 Jalankan Kode Interaktif (DartPad)</button>
+
+    <div class="quiz-container">
+        <h2 style="color: #f57f17;">Hasil Quiz & Diskusi (Slide 14)</h2>
+        <p><strong>1. Perbedaan Kelas dan Objek?</strong><br>Kelas adalah blueprint/rancangan, objek adalah wujud nyata dari rancangan tersebut.</p>
+        <p><strong>2. 3 Keuntungan OOP?</strong><br>Modular (teratur), Reusable (bisa dipakai ulang), dan Maintainable (mudah dirawat).</p>
+        <p><strong>3. Implementasi Kelas Hewan:</strong></p>
+        <pre style="background: #fafafa; color: #333; border: 1px solid #ccc;">
 class Hewan {
   String nama;
   Hewan(this.nama);
-  void bersuara() => print('$nama bersuara!');
+  void bersuara() => print('$nama mengeluarkan suara!');
 }</pre>
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="fibonacci.html" style="color: #0175c2; text-decoration: none; font-size: 14px;">← Kembali ke Tugas Fibonacci</a>
     </div>
 </div>
 
-<div id="dartpadModal" class="modal">
+<div id="myModal" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h3 style="margin-top:0">Live DartPad Editor</h3>
+        <h3 style="margin-top:0">DartPad - Latihan OOP</h3>
         <iframe src="https://dartpad.dev/embed-dart.html?id=0912759e698889980d0d82625290f6be"></iframe>
     </div>
 </div>
 
 <script>
-    function openModal() { document.getElementById("dartpadModal").style.display = "block"; }
-    function closeModal() { document.getElementById("dartpadModal").style.display = "none"; }
+    function openModal() { document.getElementById("myModal").style.display = "block"; }
+    function closeModal() { document.getElementById("myModal").style.display = "none"; }
     window.onclick = function(event) {
-        if (event.target == document.getElementById("dartpadModal")) closeModal();
+        if (event.target == document.getElementById("myModal")) closeModal();
     }
 </script>
 
