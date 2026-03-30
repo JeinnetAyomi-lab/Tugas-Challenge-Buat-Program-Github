@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laporan OOP Dart - Jeinnet</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; color: #1c1e21; margin: 0; padding: 20px; }
+        .container { max-width: 850px; margin: auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+        h1 { color: #0175c2; text-align: center; border-bottom: 3px solid #0175c2; padding-bottom: 10px; }
+        h2 { color: #1a73e8; margin-top: 30px; display: flex; align-items: center; }
+        h2::before { content: "📘"; margin-right: 10px; }
+        .info-card { background: #e8f0fe; border-radius: 10px; padding: 20px; margin-bottom: 25px; border-left: 6px solid #1a73e8; }
+        pre { background: #2d2d2d; color: #f8f8f2; padding: 20px; border-radius: 10px; overflow-x: auto; font-size: 14px; line-height: 1.5; }
+        .quiz-section { background: #fff4e5; border: 1px solid #ffe5b4; padding: 25px; border-radius: 10px; margin-top: 40px; }
+        .quiz-item { margin-bottom: 15px; font-weight: bold; color: #c2410c; }
+        .answer { margin-bottom: 20px; padding-left: 15px; border-left: 3px solid #fdba74; }
+        
+        /* Tombol & Modal */
+        .btn-interactive { background: #0175c2; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: bold; display: block; margin: 30px auto; transition: 0.3s; }
+        .btn-interactive:hover { background: #015a96; transform: scale(1.05); }
+        .modal { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); }
+        .modal-content { background: white; margin: 3% auto; padding: 20px; width: 90%; height: 85%; border-radius: 15px; position: relative; }
+        .close { position: absolute; right: 25px; top: 15px; font-size: 35px; cursor: pointer; color: #d93025; }
+        iframe { width: 100%; height: 90%; border: none; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Laporan Sesi 1: Dasar OOP di Dart</h1>
+
+    <div class="info-card">
+        <strong>Nama:</strong> Jeinnet Verara Ayomi <br>
+        <strong>Program Studi:</strong> Sistem Informasi <br>
+        <strong>Topik:</strong> Introduction to Object-Oriented Programming
+    </div>
+
+    <h2>Ringkasan Materi</h2>
+    <p>OOP adalah metode pemrograman yang berorientasi pada objek. Bayangkan <strong>Kelas (Class)</strong> sebagai cetakan kue, dan <strong>Objek (Object)</strong> sebagai kue yang sudah matang. Kelas menentukan bentuk dan rasa, sedangkan objek adalah hasil nyata yang bisa kita makan.</p>
+    
+    <ul>
+        <li><strong>Attribute:</strong> Data di dalam kelas (contoh: <code>nama</code>, <code>nim</code>).</li>
+        <li><strong>Method:</strong> Fungsi atau aksi (contoh: <code>tampilkanData()</code>).</li>
+        <li><strong>Constructor:</strong> Cara instan untuk mengisi data saat objek pertama kali dibuat.</li>
+    </ul>
+
+    <h2>Contoh Implementasi Kode</h2>
+    <p>Berikut adalah kode Dart yang menerapkan konsep Class, Constructor, dan Method untuk data Mahasiswa:</p>
+    <pre>
+class Mahasiswa {
+  String nama;
+  String nim;
+  double ipk;
+
+  // Constructor menggunakan 'this' agar lebih ringkas
+  Mahasiswa(this.nama, this.nim, this.ipk);
+
+  void tampilkanData() {
+    print('--- Data Mahasiswa ---');
+    print('Nama : $nama');
+    print('NIM  : $nim');
+    print('IPK  : $ipk');
+  }
+}
+
+void main() {
+  var mhs1 = Mahasiswa("Jeinnet", "2026001", 3.95);
+  mhs1.tampilkanData();
+}</pre>
+
+    <button class="btn-interactive" onclick="openModal()">🚀 Coba Code Secara Interaktif</button>
+
+    <div class="quiz-section">
+        <h2 style="color: #c2410c; border-left-color: #c2410c;">Hasil Quiz (Slide 14)</h2>
+        
+        <div class="quiz-item">1. Apa perbedaan utama antara kelas dan objek?</div>
+        <div class="answer">Kelas adalah cetakan/rancangan (blueprint), sedangkan objek adalah hasil nyata (instance) dari cetakan tersebut yang sudah memiliki nilai data.</div>
+
+        <div class="quiz-item">2. Sebutkan 3 keuntungan menggunakan OOP.</div>
+        <div class="answer">
+            a. <b>Reusable:</b> Kode bisa digunakan berulang kali.<br>
+            b. <b>Organized:</b> Kode lebih rapi karena terbagi per bagian (modul).<br>
+            c. <b>Maintainable:</b> Lebih mudah diperbaiki jika terjadi error tanpa merusak bagian lain.
+        </div>
+
+        <div class="quiz-item">3. Buat kelas Hewan dengan atribut nama dan metode bersuara().</div>
+        <pre style="background: #fff; color: #333; border: 1px solid #ddd;">
+class Hewan {
+  String nama;
+  Hewan(this.nama);
+  void bersuara() => print('$nama bersuara!');
+}</pre>
+    </div>
+</div>
+
+<div id="dartpadModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3 style="margin-top:0">Live DartPad Editor</h3>
+        <iframe src="https://dartpad.dev/embed-dart.html?id=05f8ca02eabc50bd8fd8c310349233a1"></iframe>
+    </div>
+</div>
+
+<script>
+    function openModal() { document.getElementById("dartpadModal").style.display = "block"; }
+    function closeModal() { document.getElementById("dartpadModal").style.display = "none"; }
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("dartpadModal")) closeModal();
+    }
+</script>
+
+</body>
+</html>
